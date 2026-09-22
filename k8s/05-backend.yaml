@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enterprise-backend
+  namespace: enterprise-analyst
+  labels:
+    app: enterprise-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enterprise-backend
+  template:
+    metadata:
+      labels:
+        app: enterprise-backend
+    spec:
+      initContainers:
+        - name: wait-for-dependencies
+          image: busybox:1.36
+          command:
+            - "sh"
+            - "-c"
+            - |
+              echo "Waiting for MySQL on mysql:3306..."
+              until nc -z -w 2 mysql 3306; do
+                echo "MySQL is unavailable - sleeping 3s..."
+                sleep 3
+              done
+              echo "MySQL is up!"
+
+              echo "Waiting for ChromaDB on chromadb:8000..."
+              until nc -z -w 2 chromadb 8000; do
+                echo "ChromaDB is unavailable - sleeping 3s..."
+                sleep 3
+              done
+              echo "ChromaDB is up!"
+
+        - name: init-mysql-and-chroma
+          image: mcp-enterprise-backend:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: analyst-config
+            - secretRef:
+                name: analyst-secrets
+          command:
+            - "sh"
+            - "-c"
+            - |
+              echo "Initializing MySQL schema and seed data..."
+              python -m backend.init_mysql
+              echo "Ingesting knowledge documents into ChromaDB..."
+              python -c "from backend.chroma import chroma_manager; chroma_manager.ingest_documents(force=False)"
+              echo "Initialization complete!"
+
+      containers:
+        - name: backend
+          image: mcp-enterprise-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: http
+          envFrom:
+            - configMapRef:
+                name: analyst-config
+            - secretRef:
+                name: analyst-secrets
+          resources:
+            requests:
+              cpu: "300m"
+              memory: "512Mi"
+            limits:
+              cpu: "1500m"
+              memory: "2048Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: enterprise-backend
+  namespace: enterprise-analyst
+  labels:
+    app: enterprise-backend
+spec:
+  type: NodePort
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30080
+      name: http
+  selector:
+    app: enterprise-backend

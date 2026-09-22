@@ -1,0 +1,14 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: enterprise-analyst-cluster
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      # Expose backend application NodePort 30080 to localhost:8000
+      - containerPort: 30080
+        hostPort: 8000
+        protocol: TCP
+      # Expose HTTP port 80 for optional ingress or standard web access
+      - containerPort: 30081
+        hostPort: 80
+        protocol: TCP

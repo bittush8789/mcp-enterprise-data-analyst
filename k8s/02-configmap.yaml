@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: analyst-config
+  namespace: enterprise-analyst
+data:
+  GROQ_MODEL: "openai/gpt-oss-120b"
+  MYSQL_HOST: "mysql"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "enterprise_analytics"
+  MYSQL_USER: "root"
+  CHROMA_HOST: "chromadb"
+  CHROMA_PORT: "8000"
+  SEMANTIC_WEIGHT: "0.6"
+  KEYWORD_WEIGHT: "0.4"
+  TOP_K: "5"
+  RERANKER_ENABLED: "true"
+  MAX_ROWS: "1000"
+  QUERY_TIMEOUT: "10"
+  MAX_INPUT_LENGTH: "2000"
+  LOG_LEVEL: "INFO"
