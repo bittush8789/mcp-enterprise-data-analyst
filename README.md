@@ -247,8 +247,9 @@ curl http://localhost:8000/sources
 
 ---
 
-## 🚢 Production Deployment
+## 🚢 Production Deployment & System Architecture
 
+- **📐 System Architecture & Low-Level Design**: Complete architectural specs in [`system-design.md`](system-design.md).
 - **AWS EC2 (Docker + Nginx + SSL)**: Detailed production VM guide in [`DEPLOYMENT_EC2.md`](DEPLOYMENT_EC2.md).
 - **Kubernetes (KinD Cluster & Manifests)**: Step-by-step local cluster setup in [`DEPLOYMENT_KIND.md`](DEPLOYMENT_KIND.md) and [`k8s/`](k8s/).
 
