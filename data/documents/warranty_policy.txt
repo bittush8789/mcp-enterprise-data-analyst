@@ -1,0 +1,32 @@
+# Enterprise Software Platform Warranty Policy
+
+Document Title: Enterprise Software Performance Warranty and SLA Guarantee
+Policy Type: Technical Support & Legal Warranty
+Effective Date: March 1, 2024
+Version: 3.8
+Applicable Customer Segment: Enterprise, Mid-Market, SMB
+
+## 1. Scope of Warranty
+This warranty statement defines the performance guarantees, bug resolution commitments, and technical specifications provided by the company for all enterprise software products, including Cloud Platform, AI Analytics Suite, ML Platform, and Data Warehouse Solution.
+
+## 2. Platform Warranty Guarantees
+- 1-Year Standard Enterprise Warranty: All software subscriptions are covered by an active operational warranty throughout the contract duration, guaranteeing that the platform performs in substantial conformance with technical documentation.
+- Cloud Platform & Hosting Guarantee: All cloud-managed deployments carry an explicit 99.99% Service Level Agreement (SLA) for platform availability, excluding scheduled maintenance windows announced at least five (5) days in advance.
+- Data Integrity Guarantee: Automated daily snapshotting and multi-region replication ensure a Recovery Point Objective (RPO) under 15 minutes and Recovery Time Objective (RTO) under 2 hours.
+
+## 3. Product-Specific Warranty Clauses
+- Cloud Platform: Guaranteed multi-tenant isolation, automatic auto-scaling up to 50,000 IOPS, and 99.99% continuous API availability.
+- ML Platform & AI Analytics Suite: Guarantees deterministic inference serving, compliant model checkpoint serialization, and model evaluation latency guarantees under 250ms for standard batch queries.
+- Data Warehouse Solution: ACID transaction guarantees on analytical storage and zero data corruption warranty backed by redundant WAL logging.
+
+## 4. Defect Remediation & Hotfix Timelines
+When a functional defect or security vulnerability is verified:
+- Critical Severity (Sev 1 - System Down / Data Corruption): Remediation hotfix or temporary workaround provided within 24 hours.
+- Major Severity (Sev 2 - Impaired Core Functionality): Code patch deployed within five (5) business days.
+- Minor Severity (Sev 3 - Workaround Available): Scheduled into the next sprint release (typically within 14 calendar days).
+
+## 5. Warranty Exclusions
+Warranty coverage is void or inapplicable if:
+- The software was modified, decompiled, or patched by unauthorized third parties.
+- Hardware or on-premises environment fails to meet published minimum system requirements.
+- Customer network outages, unauthorized API key misuse, or third-party telecommunication failures prevent operation.

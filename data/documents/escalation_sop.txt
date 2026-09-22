@@ -1,0 +1,44 @@
+# Enterprise Customer Escalation Standard Operating Procedure (SOP)
+
+Document Title: Standard Operating Procedure for Enterprise Incident Escalation
+Policy Type: Technical Support & Customer Engineering SOP
+Effective Date: January 15, 2024
+Version: 6.0
+Applicable Customer Segment: Enterprise, Mid-Market
+
+## 1. Objective and Purpose
+This Standard Operating Procedure (SOP) defines the operational guidelines, severity tiers, and escalation hierarchy for resolving critical production incidents and customer satisfaction escalations for enterprise accounts.
+
+## 2. Severity Classification Matrix
+- Severity 1 (Critical / Business Halting):
+  - Definition: Complete outage of production systems, data corruption, or total security breach preventing business operations.
+  - Initial Response SLA: Within 15 minutes (24x7x365).
+  - Status Update Frequency: Every 30 minutes until mitigation.
+- Severity 2 (Major / Degraded Operations):
+  - Definition: Major platform functionality impaired with severe impact on customer business, but core transactions remain viable.
+  - Initial Response SLA: Within 1 hour (24x7x365 for Enterprise; 8x5 for Mid-Market).
+  - Status Update Frequency: Every 2 hours.
+- Severity 3 (Moderate / Impaired Functionality):
+  - Definition: Non-critical feature failure or minor bug where an acceptable operational workaround is available.
+  - Initial Response SLA: Within 4 hours (business hours).
+  - Status Update Frequency: Daily updates until resolution.
+- Severity 4 (Minor / General Inquiry):
+  - Definition: How-to questions, configuration guidance, documentation clarification, or feature requests.
+  - Initial Response SLA: Within 24 business hours.
+
+## 3. Four-Tier Escalation Path
+- Level 1 - Tier 1 Support Engineer:
+  - Initial ticket triage, log collection, reproduction, and basic troubleshooting.
+  - Escalates to Level 2 if unresolved after 30 minutes for Sev 1 or 2 hours for Sev 2.
+- Level 2 - Dedicated Technical Account Manager (TAM) & Senior Support Engineer:
+  - Deep architectural debugging, direct hotline access with customer engineering team.
+  - Direct communication bridge with Customer Operations Lead.
+- Level 3 - Staff Engineering & Escalation Manager:
+  - Direct engagement of platform engineering and DevOps incident command bridge.
+  - Activated automatically if Sev 1 duration exceeds 1 hour.
+- Level 4 - Executive Command (VP of Customer Engineering & CTO):
+  - Executive notification dispatched within 2 hours of persistent Sev 1 outages.
+  - Daily executive briefing with customer C-level leadership until resolution and post-mortem delivery.
+
+## 4. Post-Incident Root Cause Analysis (RCA)
+For any Sev 1 or Sev 2 incident, an official Root Cause Analysis (RCA) report must be delivered to the customer within five (5) business days, detailing timeline, primary cause, corrective action items, and preventive architectural measures.

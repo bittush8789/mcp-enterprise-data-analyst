@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Business Assistant — Company Data & Policies</title>
+  <meta name="description" content="Friendly AI assistant for business teams to ask natural language questions about company sales, customers, and official policies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Chart.js for interactive analytics charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <span class="brand-name">Business Assistant</span>
+            <span class="brand-badge">Verified Intelligence</span>
+          </div>
+        </div>
+        <button id="new-chat-btn" class="btn btn-primary new-chat-btn" title="Start a fresh question">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>New Question</span>
+        </button>
+      </div>
+
+      <!-- Quick Non-Tech Suggested Inquiries -->
+      <div class="sidebar-section">
+        <div class="section-label">Popular Questions</div>
+        <div class="suggestion-chips">
+          <button class="chip" data-prompt="Show revenue by region for the last 6 months.">
+            📊 Sales by Region
+          </button>
+          <button class="chip" data-prompt="Which product generated the highest revenue?">
+            🏆 Top Selling Product
+          </button>
+          <button class="chip" data-prompt="Compare Enterprise and SMB revenue.">
+            📈 Enterprise vs SMB Sales
+          </button>
+          <button class="chip" data-prompt="What is our refund policy?">
+            📄 Customer Refund Policy
+          </button>
+          <button class="chip" data-prompt="What is the customer escalation process?">
+            🚨 Incident Support Escalation
+          </button>
+          <button class="chip" data-prompt="Which region generated the highest revenue and what discount policy applies to that region?">
+            ⚡ Top Region & Applicable Discount
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat History -->
+      <div class="sidebar-section flex-grow">
+        <div class="section-label">Previous Questions</div>
+        <div class="history-list" id="history-list">
+          <!-- Dynamic conversation sessions rendered here -->
+        </div>
+      </div>
+
+      <!-- Friendly System Status Footer -->
+      <div class="sidebar-footer">
+        <div class="system-status-card" id="system-status-card">
+          <div class="status-row">
+            <span class="status-indicator online" id="mysql-indicator"></span>
+            <span class="status-label">Sales Records (Connected)</span>
+          </div>
+          <div class="status-row">
+            <span class="status-indicator online" id="chroma-indicator"></span>
+            <span class="status-label">Company Policies (Loaded)</span>
+          </div>
+          <div class="status-row">
+            <span class="status-indicator online" id="model-indicator"></span>
+            <span class="status-label">AI Analyst Engine (Ready)</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Workspace -->
+    <main class="chat-main">
+      <!-- Top Bar -->
+      <header class="chat-header">
+        <div class="header-title-container">
+          <h1 class="chat-title" id="chat-title">Company Data & Knowledge Assistant</h1>
+          <p class="chat-subtitle">Ask in plain English • Real database numbers • Official company guidelines • Zero guessing</p>
+        </div>
+        <div class="header-actions">
+          <!-- Help / Guide Button -->
+          <button id="help-btn" class="btn btn-secondary help-btn" title="How to use this assistant">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span>Guide</span>
+          </button>
+
+          <!-- Theme Toggle Button (Light / Dark) -->
+          <button id="theme-toggle-btn" class="icon-btn theme-toggle" title="Switch Theme (Light / Dark)">
+            <!-- Sun icon for dark mode (click to switch to light) -->
+            <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon icon for light mode (click to switch to dark) -->
+            <svg id="theme-icon-moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Clear Button -->
+          <button id="clear-chat-btn" class="icon-btn" title="Clear current questions">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Message History Container -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Friendly Hero Welcome State -->
+        <div class="welcome-hero" id="welcome-hero">
+          <div class="hero-badge">Verified Company Intelligence</div>
+          <h2 class="hero-title">Ask any question about sales or company policies</h2>
+          <p class="hero-desc">
+            No technical knowledge or SQL queries needed. Simply type your question in plain English below, 
+            and the assistant will look up verified figures and official rules for you.
+          </p>
+          <div class="hero-grid">
+            <div class="hero-card" data-prompt="What is total revenue?">
+              <div class="card-icon">💰</div>
+              <div class="card-title">Overall Sales Total</div>
+              <div class="card-text">"What is total revenue?"</div>
+            </div>
+            <div class="hero-card" data-prompt="What is the warranty policy?">
+              <div class="card-icon">🛡️</div>
+              <div class="card-title">Product Guarantees</div>
+              <div class="card-text">"What is the warranty policy?"</div>
+            </div>
+            <div class="hero-card" data-prompt="Which region generated the highest revenue and what discount policy applies to that region?">
+              <div class="card-icon">⚡</div>
+              <div class="card-title">Sales + Policy Combined</div>
+              <div class="card-text">"Highest region & applicable discount"</div>
+            </div>
+            <div class="hero-card" data-prompt="Who are the top 10 customers by revenue?">
+              <div class="card-icon">🏢</div>
+              <div class="card-title">Top Customer Accounts</div>
+              <div class="card-text">"Who are the top 10 customers?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input Area -->
+      <div class="chat-input-wrapper">
+        <form class="chat-input-form" id="chat-form">
+          <div class="input-container">
+            <textarea 
+              id="user-input" 
+              class="chat-textarea" 
+              placeholder="Ask any question in plain English... (e.g. 'Show revenue by region' or 'What is our refund policy?')" 
+              rows="1"
+              autofocus
+            ></textarea>
+            <button type="submit" id="send-btn" class="send-btn" title="Send question" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+          <div class="input-disclaimer">
+            <span>🛡️ Verified Business Insights: Answers are grounded directly in official company database records and policies.</span>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Friendly Non-Tech User Guide Modal -->
+  <div class="modal-backdrop" id="guide-modal" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">💡 How to Use the Business Assistant</div>
+        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="guide-item">
+          <div class="guide-icon">💬</div>
+          <div class="guide-content">
+            <strong>1. Ask in Natural English</strong>
+            <p>You don't need technical skills, database names, or coding formulas. Ask as you would speak to a colleague (e.g. <em>"Which region did best this year?"</em>).</p>
+          </div>
+        </div>
+        <div class="guide-item">
+          <div class="guide-icon">📊</div>
+          <div class="guide-content">
+            <strong>2. Automatic Charts & Tables</strong>
+            <p>When you ask about numbers, the assistant automatically builds interactive charts and clear comparison tables for you.</p>
+          </div>
+        </div>
+        <div class="guide-item">
+          <div class="guide-icon">🔍</div>
+          <div class="guide-content">
+            <strong>3. Combines Data & Policies</strong>
+            <p>You can ask combined questions like <em>"Which region had highest revenue and what discount applies there?"</em> — it looks up both database sales and written guidelines.</p>
+          </div>
+        </div>
+        <div class="guide-item">
+          <div class="guide-icon">🛡️</div>
+          <div class="guide-content">
+            <strong>4. Factual and Honest</strong>
+            <p>Every number cites its source. If the company records do not have a piece of information (like why customer demand changed), it will let you know honestly rather than inventing an answer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="modal-got-it-btn">Got it, let's start!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

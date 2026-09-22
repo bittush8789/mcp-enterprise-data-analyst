@@ -1,0 +1,36 @@
+# Enterprise Commercial Refund Policy
+
+Document Title: Global Enterprise Software & Services Refund Policy
+Policy Type: Commercial Terms & Customer Financial Operations
+Effective Date: January 1, 2024
+Version: 4.2
+Applicable Customer Segment: Enterprise, Mid-Market, SMB
+
+## 1. Overview and Scope
+This policy governs refund eligibility, service credit adjustments, and termination rights for all commercial customers utilizing enterprise software licenses, cloud platform subscriptions, and professional consulting services.
+
+## 2. Standard Refund Terms
+- 30-Day Evaluation Window: Enterprise and Mid-Market customers entering a new multi-year Master Services Agreement (MSA) are entitled to a full refund within thirty (30) calendar days of the initial provisioning date if the software platform fails to meet documented functional specifications.
+- SMB Purchases: Small and Medium Business (SMB) customers purchasing via direct credit terms are eligible for a refund within fourteen (14) calendar days of purchase, subject to non-usage verification.
+- Pro-Rata Cloud Credits: After the standard evaluation window, refunds are not issued in cash or bank transfer; eligible account balance adjustments are granted as prorated service credits applicable toward future billing cycles.
+
+## 3. SLA Service Credit Adjustments
+If system uptime drops below our contractual Service Level Agreement (SLA) of 99.99%:
+- System Uptime 99.00% - 99.89%: 10% monthly subscription credit.
+- System Uptime 95.00% - 98.99%: 25% monthly subscription credit.
+- System Uptime below 95.00%: 50% monthly subscription credit or right to terminate without penalty.
+
+## 4. Exceptions and Non-Refundable Items
+The following items are strictly non-refundable:
+- Professional services, customized deployment, data migration, and onboarding hours once work has commenced.
+- Consumed cloud compute, storage egress, and third-party API execution units.
+- Accounts terminated due to violation of Acceptable Use Policies or security breaches caused by customer negligence.
+
+## 5. Refund Submission and Approval Procedure
+1. Submission: The customer must submit a formal refund request via the Customer Portal attaching invoice numbers and technical logs.
+2. Review: Customer Success Operations validates invoice payment status within two (2) business days.
+3. Approval Hierarchy:
+   - Up to $10,000: Approved by Customer Success Manager (CSM).
+   - $10,001 - $50,000: Approved by Director of Commercial Operations.
+   - Above $50,000: Requires authorization from the Chief Financial Officer (CFO).
+4. Credit Issuance: Approved refunds/credits are processed within five (5) business days and appear on the subsequent monthly statement.

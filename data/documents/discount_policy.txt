@@ -1,0 +1,38 @@
+# Enterprise Commercial Discount Policy
+
+Document Title: Commercial Pricing Strategy and Discount Authority Matrix
+Policy Type: Sales & Commercial Pricing Policy
+Effective Date: February 15, 2024
+Version: 5.1
+Applicable Customer Segment: Enterprise, Mid-Market, SMB
+
+## 1. Purpose and Guidelines
+This policy outlines approved discount structures, regional incentive programs, volume thresholds, and signature authority levels across enterprise subscription sales. All discounts must be justified by contractual commitment size or strategic market penetration.
+
+## 2. Customer Segment Volume Discounts
+- Enterprise Segment:
+  - Annual Contract Value (ACV) between $50,000 and $100,000: Up to 15% standard discount.
+  - ACV between $100,001 and $250,000: Up to 20% discount with a 2-year commitment.
+  - ACV exceeding $250,000: Up to 25% discount with a 3-year commitment and upfront annual billing.
+- Mid-Market Segment:
+  - Eligible for volume discounts up to 12% on contracts with annual commitments exceeding $30,000.
+- SMB Segment:
+  - Standard list pricing applies. An annual upfront prepayment grants a 5% promotional discount.
+
+## 3. Regional Discount Programs
+- North Region (Strategic Growth Corridor):
+  - In addition to standard segment discounts, North region enterprise accounts are eligible for a 15% Regional Growth & Expansion Incentive on multi-product suites (combining Cloud Platform and AI Analytics Suite).
+- West Region (Innovation Territory):
+  - West region accounts qualify for a 10% Regional Technology Adoption Discount for deployments adopting ML Platform and Observability Suite.
+- South, East, and Central Regions:
+  - Standard discount matrix applies with discretionary Regional VP discount margin of up to 5% for competitive displacement deals.
+
+## 4. Multi-Product Bundle Incentives
+- Deploying 3 or more core platforms (e.g., Cloud Platform + AI Analytics Suite + Data Integration Platform) qualifies for an additional 7.5% platform bundling discount.
+- The maximum combined cumulative discount cannot exceed 35% without Executive Committee waiver.
+
+## 5. Discount Approval Authority Matrix
+- Up to 10%: Account Executive (AE) and Sales Manager discretion.
+- 10.1% - 20%: Regional Sales Vice President approval required.
+- 20.1% - 30%: Senior Vice President of Global Sales approval required.
+- Greater than 30%: Requires joint written approval from Chief Revenue Officer (CRO) and Chief Financial Officer (CFO).
